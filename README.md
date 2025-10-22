@@ -32,7 +32,9 @@ The code can be found in component/simple-release
 | G_x | x-axis g-force | g | Output |
 | G_z | z-axis g-force | g | Output |
 
+According to Gyro Swing ride Loke
 
+L = 24m, Maximum Angle is $\frac{2\pi}{3}$
 
 
 ### Version History
