@@ -1,5 +1,3 @@
-from re import L
-from networkx import omega
 import numpy as np
 import sys 
 from scipy.integrate import solve_ivp
@@ -11,7 +9,6 @@ def solve_pendulum(theta_0, g=9.81, L=24.0, n_points=1000):
     """
     求解单摆ODE，直到 theta <= 0
     """
-    
     def ode_system(t, y):
         theta, omega = y
         dtheta_dt = omega
@@ -39,7 +36,6 @@ def solve_pendulum(theta_0, g=9.81, L=24.0, n_points=1000):
     # 
     if solution.t_events[0].size > 0:
         t_event = solution.t_events[0][0]
-        # 重新生成均匀分布的时间点
         t_new = np.linspace(0, t_event, n_points)
         theta_new = solution.sol(t_new)[0]
         return t_new, theta_new
@@ -51,21 +47,16 @@ def solve_pendulum(theta_0, g=9.81, L=24.0, n_points=1000):
 
 # 示例使用
 if __name__ == "__main__":
-    # 输入：初始角度（60度）
     theta_0 = np.radians(120)
-    
-    # 求解
+
     t, theta = solve_pendulum(theta_0)
-    print(len(t), len(theta))
-    omega_v = tools.AngleToOmega(theta, t)
-    v = tools.AngleVelocityToVelocity(omega_v, L=24.0)
-    print(len(omega_v), len(v))
-    acc_cent = tools.accCentripetal(v, L=24.0)
-    acc_tan = tools.accTangential(theta, g=9.81)
-    print(len(acc_cent), len(acc_tan))
-    # 计算数值上速度的加速度
+    
+    # 以下List大小均一致
+    omega_v = tools.AngleToOmega(theta, t) # Angular velocity
+    v = tools.AngleVelocityToVelocity(omega_v, L=24.0) # Linear velocity
+    acc_cent = tools.accCentripetal(v, L=24.0) # Centripetal acceleration
+    acc_tan = tools.accTangential(theta, g=9.81) # Tangential acceleration
     a_num_line = np.gradient(v, t) # 验证一致
-    print(len(a_num_line))
 
     # 可视化角度
     # plt.plot(t, np.degrees(theta))
