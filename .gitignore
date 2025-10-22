@@ -1,1 +1,13 @@
 禁忌力量/
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+
+.vscode/
+
+utils/__pycache__/
