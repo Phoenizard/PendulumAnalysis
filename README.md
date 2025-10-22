@@ -6,11 +6,12 @@
 
 The pendulum is released from a given hight with $\theta_0$. We obtain ODE:
 
-$$
-\frac{d\theta}{dt} = [\frac{2g}{L}(\cos{\theta} - \cos{\theta_0})]^{\frac{1}{2}} \\
+For $\theta(0) = \theta_0$:
 
-\theta(0) = \theta_0
 $$
+\frac{d\theta}{dt} = [\frac{2g}{L}(\cos{\theta} - \cos{\theta_0})]^{\frac{1}{2}} 
+$$
+
 
 The code can be found in component/simple-release
 
